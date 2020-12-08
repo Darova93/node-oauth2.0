@@ -1,0 +1,9 @@
+version: "3"
+services:
+  node-ms:
+    image: node:14.15.1
+    restart: always
+    ports: 
+      - 5000:5000
+    volumes:
+      - ".:/user/src"
