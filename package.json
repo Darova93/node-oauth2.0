@@ -2,9 +2,13 @@
   "name": "oauth",
   "version": "1.0.0",
   "description": "This is an authentication microservice with oauth 2.0",
-  "main": "index.js",
+  "main": "main.js",
+  "type": "module",
   "scripts": {
-    "test": "test"
+    "eslint": "eslint",
+    "check": "eslint .",
+    "build": "babel main.js --out-file main-compiled.js",
+    "start": "nodemon --experimental-json-modules --exec babel-node  main.js"
   },
   "author": "David Rodríguez Vázquez",
   "license": "ISC",
@@ -15,5 +19,29 @@
     "express": "^4.17.1",
     "nodemon": "^2.0.6",
     "request": "^2.88.2"
+  },
+  "devDependencies": {
+    "@babel/cli": "^7.12.8",
+    "@babel/core": "^7.12.9",
+    "@babel/node": "^7.12.6",
+    "@babel/plugin-transform-runtime": "^7.12.1",
+    "@babel/preset-env": "^7.12.7",
+    "@typescript-eslint/eslint-plugin": "^4.9.1",
+    "@typescript-eslint/parser": "^4.9.1",
+    "eslint": "^7.15.0",
+    "eslint-config-google": "^0.14.0",
+    "swagger-ui-express": "^4.1.5",
+    "typescript": "^4.1.2"
+  },
+  "nodemonConfig": {
+    "restartable": "rs",
+    "ignore": [
+      "node_modules/**/node_modules"
+    ],
+    "delay": "2500",
+    "env": {
+      "NODE_ENV": "development",
+      "SERVER_PORT": 5000
+    }
   }
 }
