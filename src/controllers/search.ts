@@ -1,5 +1,5 @@
 export default {
-  searchMovie: (req, res) => {
+  searchMovie: (req : any, res : any) => {
     if (!req.params.title) {
       res.send(`Required information is missing`);
     } else {

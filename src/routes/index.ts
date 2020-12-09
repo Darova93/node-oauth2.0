@@ -1,9 +1,9 @@
-import express from 'express';
-import searchRoutes from './search.js';
+import {Router} from 'express';
+import searchRoutes from './search';
 import swaggerUi from 'swagger-ui-express';
 import swaggerDocument from './swagger.json';
 
-const router = express.Router();
+const router = Router();
 router.use('/search', searchRoutes);
 
 if (process.env.NODE_ENV === 'development') {

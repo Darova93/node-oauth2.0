@@ -1,0 +1,81 @@
+{
+    "swagger": "2.0",
+    "info": {
+        "description": "This is an example",
+        "version": "1.0.0",
+        "title": "Swagger OAuth",
+        "contact": {
+            "email": "d.rodriguez@cyberpuerta.mx"
+        }
+    },
+    "host": "/oauth",
+    "basePath": "/v1",
+    "tags": [
+        {
+            "name": "oauth",
+            "description": "Authentication microservice"
+        }
+    ],
+    "schemes": ["https", "http"],
+    "paths": {
+        "/login": {
+            "post": {
+                "tags": [],
+                "summary": "log in",
+                "description": "log in",
+                "operationId": "login",
+                "consumes": ["application/json", "application/xml"],
+                "produces": ["application/json", "application/xml"],
+                "parameters": [
+                    {
+                        "in": "body",
+                        "name": "body",
+                        "description": "Credentials",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/Authentication"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Ok",
+                        "schema": {
+                            "$ref": "#/definitions/Authentication"
+                        }
+                    },
+                    "400": {
+                        "description": "Invalid format"
+                    }
+                }
+            }
+        }
+    },
+    "securityDefinitions": {
+        "login_auth": {
+            "type": "oauth2",
+            "authorizationUrl": "/login",
+            "flow": "implicit",
+            "scopes": {
+                "write:users": "adds users",
+                "read:users": "read user"
+            }
+        },
+        "api_key": {
+            "type": "apiKey",
+            "name": "api_key",
+            "in": "header"
+        }
+    },
+    "definitions": {
+        "Authentication": {
+            "type": "object",
+            "properties": {
+                "id": {
+                    "type": "integer",
+                    "format": "int64"
+                }
+            }
+        }
+    }
+}
